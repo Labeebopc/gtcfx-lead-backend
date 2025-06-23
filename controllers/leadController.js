@@ -9,7 +9,8 @@ const Lead = require('../models/leadModel')
 //@api POST /lead_registration
 //@access Public
 exports.leadRegistration = asyncHandler(async (req, res) => {
-    const { name, email, phone, source, submitted_at, active } = req.body;
+
+    const { name, email, phone, source, submitted_at, isActive } = req.body;
 
     try {
 
@@ -26,7 +27,7 @@ exports.leadRegistration = asyncHandler(async (req, res) => {
 
         if (!existingLead) {
 
-            const lead = await Lead.create({ name, email, phone, source, submitted_at, active });
+            const lead = await Lead.create({ name, email, phone, source, submitted_at, isActive });
 
             return res
                 .status(201)
@@ -78,7 +79,7 @@ exports.getLeadData = asyncHandler(async (req, res) => {
         }
         return res.status(200).json({
             status: true,
-            lead: { id: lead._id, name: lead.name, email: lead.email, phone: lead.phone, source: lead.source, submitted_at: lead.submitted_at, active: lead.active },
+            lead: { id: lead._id, name: lead.name, email: lead.email, phone: lead.phone, source: lead.source, submitted_at: lead.submitted_at, isActive: lead.isActive },
         });
 
     } catch (error) {

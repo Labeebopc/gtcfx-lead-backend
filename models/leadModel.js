@@ -26,7 +26,7 @@ const leadSchema = new mongoose.Schema({
         type: Date
     },
 
-    active: {
+    isActive: {
         type: Boolean, default: true
     }
 
