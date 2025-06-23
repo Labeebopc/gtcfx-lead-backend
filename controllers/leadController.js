@@ -42,7 +42,13 @@ exports.leadRegistration = asyncHandler(async (req, res) => {
 exports.getAllLeads = asyncHandler(async (req, res) => {
 
     try {
-        const allLeads = await Lead.find();
+
+        const { source, page = 1, limit = 10 } = req.query;
+        const filter = { isActive: true };
+
+        if (source) filter.source = source;
+
+        const allLeads = await Lead.find(filter).skip((page - 1) * limit).limit(parseInt(limit));
 
         if (!allLeads) {
             return res.status(404).json({ status: false, message: "Leads not found" });
