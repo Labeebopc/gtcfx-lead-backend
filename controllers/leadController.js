@@ -9,7 +9,8 @@ const Lead = require('../models/leadModel')
 //@api POST /lead_registration
 //@access Public
 exports.leadRegistration = asyncHandler(async (req, res) => {
-    const { name, email, phone, source, submitted_at, active } = req.body;
+
+    const { name, email, phone, source, submitted_at, isActive } = req.body;
 
     try {
 
@@ -26,7 +27,7 @@ exports.leadRegistration = asyncHandler(async (req, res) => {
 
         if (!existingLead) {
 
-            const lead = await Lead.create({ name, email, phone, source, submitted_at, active });
+            const lead = await Lead.create({ name, email, phone, source, submitted_at, isActive });
 
             return res
                 .status(201)
@@ -66,19 +67,20 @@ exports.getAllLeads = asyncHandler(async (req, res) => {
 
 
 //@disc Get Lead Data
-//@api POST /get_lead_data
+//@api GET /get_lead_data
 //@access Private
 exports.getLeadData = asyncHandler(async (req, res) => {
-    const { id } = req.params.id;
+    const {id} = req.params.id
 
     try {
-        const lead = await Lead.findOne({ _id: id });
+        const lead = await Lead.findOne(id);
+
         if (!lead) {
             return res.status(404).json({ status: false, message: "Lead not found" });
         }
         return res.status(200).json({
             status: true,
-            lead: { id: lead._id, name: lead.name, email: lead.email, phone: lead.phone, source: lead.source, submitted_at: lead.submitted_at, active: lead.active },
+            lead
         });
 
     } catch (error) {
@@ -92,7 +94,7 @@ exports.getLeadData = asyncHandler(async (req, res) => {
 //@api PUT /update_lead
 //@access Private
 exports.updateLead = asyncHandler(async (req, res) => {
-    const { id } = req.params.id
+    const  id  = req.params.id
     try {
 
         const updated = await Lead.findByIdAndUpdate(id, req.body, { new: true });
@@ -110,11 +112,10 @@ exports.updateLead = asyncHandler(async (req, res) => {
 //@api DELETE /delete_lead
 //@access Private
 exports.deleteLead = asyncHandler(async (req, res) => {
-    const { id } = req.params.id
+    const id  = req.params.id
     try {
 
-        const removeLead = await Lead.findByIdAndDelete({ _id: id });
-
+        const removeLead = await Lead.findByIdAndDelete(id);
         return res.status(200).json({ status: true, message: "Lead successfully deleted" })
 
     } catch (error) {
