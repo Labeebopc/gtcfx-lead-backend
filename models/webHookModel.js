@@ -18,3 +18,7 @@ const webhookLogSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+const webHookModel = mongoose.model("WebhookLog", webhookLogSchema);
+
+module.exports = webHookModel;
