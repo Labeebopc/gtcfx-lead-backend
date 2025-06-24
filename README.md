@@ -35,16 +35,15 @@ cd gtcfx-lead-backend
 npm install
 npm start
 
-CREATE Leads
-POST /api/lead_registration
-
+```bash
 ---
 
-## 📄 API Endpoints
+
+### 📄 API Endpoints
 
 ### ➕ Create Lead
 
-**POST** `/api/lead_registration`
+**POST** `/api/leads`
 
 **Body:**
 ```json
@@ -59,15 +58,15 @@ POST /api/lead_registration
 
 ### ➕ Get Leads (Paginated & Filtered)
 
-**GET** `/api/get_all_leads?source=any&page=1&limit=10`
+**GET** `/api/leads?source=any&page=1&limit=10`
 
 ### ➕ Get Single Lead
 
-**GET** `/api/get_lead_data/:id`
+**GET** `/api/leads/:id`
 
 ### ➕ Update Lead
 
-**PUT** `/api/update_lead/:id`
+**PUT** `/api/leads/:id`
 
 **Body:**
 ```json
@@ -80,6 +79,6 @@ POST /api/lead_registration
     "isActive": "true"
 }
 
-### ➕ Delete Lead
+### ➕ Delete Lead (Marking as Inactive)
 
-**DELETE** `/api/delete_lead/:id`
+**DELETE** `/api/leads/:id`
