@@ -66,7 +66,7 @@ exports.getAllLeads = asyncHandler(async (req, res) => {
     try {
 
         const { source, page = 1, limit = 10 } = req.query;
-        const filter = {};
+        const filter = {isActive: true};
 
         if (source) filter.source = source;
 
