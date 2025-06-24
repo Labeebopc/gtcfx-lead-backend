@@ -3,19 +3,19 @@ const { leadRegistration, getAllLeads, deleteLead, getLeadData, updateLead } = r
 const router = require("express").Router()
 
 //LEAD_REGISTRATION || POST
-router.post("/api/lead_registration", leadRegistration);
+router.post("/api/leads", leadRegistration);
 
 //GET_ALL_LEADS || GET
-router.get("/api/get_all_leads", getAllLeads);
+router.get("/api/leads", getAllLeads);
 
 //GET_LEAD_DATA || GET
-router.get("/api/get_lead_data/:id", getLeadData);
+router.get("/api/leads/:id", getLeadData);
 
 //UPDATE_LEAD || PUT
-router.put("/api/update_lead/:id", updateLead);
+router.put("/api/leads/:id", updateLead);
 
 //DELETE_LEAD || DELETE
-router.delete("/api/delete_lead/:id", deleteLead);
+router.delete("/api/leads/:id", deleteLead);
 
 
 
