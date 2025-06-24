@@ -20,7 +20,7 @@ exports.leadRegistration = asyncHandler(async (req, res) => {
             return res.status(400).json({ error: 'Required field is missing !' });
         }
 
-        const existingLead = await Lead.findOne({ email: email });
+        const existingLead = await Lead.findOne({ email: email, isActive: true });
         if (existingLead) {
             return res
                 .status(400)
