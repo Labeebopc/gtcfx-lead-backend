@@ -117,8 +117,8 @@ exports.getLeadData = asyncHandler(async (req, res) => {
 exports.updateLead = asyncHandler(async (req, res) => {
     const id = req.params.id
     try {
-
-        const updated = await Lead.findByIdAndUpdate(id, req.body, { new: true });
+        const { _id, ...updateData } = req.body;
+        const updated = await Lead.findByIdAndUpdate(id, updateData, { new: true });
 
         if (!updated) return res.status(404).json({ error: 'Lead not found' });
 
