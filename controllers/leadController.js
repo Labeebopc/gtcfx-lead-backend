@@ -91,10 +91,10 @@ exports.getAllLeads = asyncHandler(async (req, res) => {
 //@api GET /leads
 //@access Private
 exports.getLeadData = asyncHandler(async (req, res) => {
-    const { id } = req.params.id
+    const id  = req.params.id
 
     try {
-        const lead = await Lead.findOne(id);
+        const lead = await Lead.findById(id);
 
         if (!lead) {
             return res.status(404).json({ status: false, message: "Lead not found" });
