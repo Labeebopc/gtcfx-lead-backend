@@ -1,3 +1,4 @@
+
 # Lead Management REST API
 
 A scalable RESTful API for managing leads, built with **Node.js**, **Express**, and **MongoDB**.
@@ -34,51 +35,66 @@ git clone https://github.com/Labeebopc/gtcfx-lead-backend.git
 cd gtcfx-lead-backend
 npm install
 npm start
+````
 
-```bash
 ---
 
-
-### 📄 API Endpoints
+## 📄 API Endpoints
 
 ### ➕ Create Lead
 
 **POST** `/api/leads`
 
-**Body:**
+**Request Body:**
+
 ```json
 {
-    "name":"Labeeb",
-    "email":"labeeb@gmail.com",
-    "phone":"123456",
-    "source":"any",
-    "submitted_at": "2025-06-23T12:00:00Z",
-    "isActive": "true"
+  "name": "Labeeb",
+  "email": "labeeb@gmail.com",
+  "phone": "123456",
+  "source": "any",
+  "submitted_at": "2025-06-23T12:00:00Z",
+  "isActive": true
 }
+```
 
-### ➕ Get Leads (Paginated & Filtered)
+---
+
+### 🔍 Get Leads (Paginated & Filtered)
 
 **GET** `/api/leads?source=any&page=1&limit=10`
 
-### ➕ Get Single Lead
+---
+
+### 🔍 Get Single Lead
 
 **GET** `/api/leads/:id`
 
-### ➕ Update Lead
+---
+
+### ✏️ Update Lead
 
 **PUT** `/api/leads/:id`
 
-**Body:**
+**Request Body:**
+
 ```json
 {
-    "name":"Labeeb Updated",
-    "email":"labeebUpdated@gmail.com",
-    "phone":"123456",
-    "source":"any",
-    "submitted_at": "2025-06-24T12:00:00Z",
-    "isActive": "true"
+  "name": "Labeeb Updated",
+  "email": "labeebUpdated@gmail.com",
+  "phone": "123456",
+  "source": "any",
+  "submitted_at": "2025-06-24T12:00:00Z",
+  "isActive": true
 }
+```
 
-### ➕ Delete Lead (Marking as Inactive)
+---
+
+### ❌ Delete Lead (Soft Delete)
 
 **DELETE** `/api/leads/:id`
+
+Soft deletes the lead by setting `isActive` to `false`.
+
+---
